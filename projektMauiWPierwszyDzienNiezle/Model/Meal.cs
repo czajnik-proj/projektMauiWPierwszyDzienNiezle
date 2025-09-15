@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace projektMauiWPierwszyDzienNiezle.Model
 {
-    internal partial class Meal
+    [ObservableObject]
+    public partial class Meal
     {
         public string Name { get; set; }
         public int Kcal {  get; set; }
