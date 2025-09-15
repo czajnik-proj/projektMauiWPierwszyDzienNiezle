@@ -6,19 +6,33 @@
     <StackLayout>
         <StackLayout>
             <Label Text="Ilość Zjedzonych Kalorii : "></Label>
-            <Label Text="{Binding caloriesEaten}"></Label>
+            <Label Text="{Binding CaloriesEaten}"></Label>
         </StackLayout>
         <StackLayout>
             <Label Text="Lista Posiłków : "></Label>
+            <ListView ItemsSource="{Binding MealCollection}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}"></Label>
+                                <Label Text="{Binding Servings}"></Label>
+                                <Label Text="{Binding Kcal}"></Label>
+                                <Button Command="{Binding EditMealCommand}"></Button>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
         <StackLayout>
             <Label Text="Podaj nazwę posiłku"></Label>
             <Entry Text="{Binding Name}"></Entry>
             <Label Text="Ilość danego Posiłku"></Label>
-            <Entry Text="{Binding Servings}"></Entry>
+            <Entry Text="{Binding Servings}" Keyboard="Numeric"></Entry>
             <Label Text="Podaj ilośc Kalorii (kcal)"></Label>
-            <Entry Text="{Binding Kcal}"></Entry>
-            <Button Text="Dodaj Posiłek"></Button>
+            <Entry Text="{Binding Kcal}" Keyboard="Numeric"></Entry>
+            <Button Text="Dodaj Posiłek" Command="{Binding AddMealCommand}"></Button>
         </StackLayout>
     </StackLayout>
 </ContentPage>

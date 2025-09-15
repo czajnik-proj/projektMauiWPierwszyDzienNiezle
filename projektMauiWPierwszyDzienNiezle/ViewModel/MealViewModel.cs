@@ -17,7 +17,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
 
         public void AddMeal(Meal MealItem)
         {
-            _MealCollection.Append(MealItem);
+            _MealCollection.Add(MealItem);
         }
         public void DeleteMeal(Meal MealItem)
         {
@@ -29,11 +29,10 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         }
         public void EditMeal(Meal MealItem, string name, int kcal, int servings)
         {
-            Meal editedMeal = new Meal(name, kcal, servings);
             int editIndex = _MealCollection.IndexOf(MealItem);
             if (editIndex != -1)
             {
-                _MealCollection[editIndex] = MealItem;
+                _MealCollection[editIndex] = new Meal(name, kcal, servings);
             }
         }
 
