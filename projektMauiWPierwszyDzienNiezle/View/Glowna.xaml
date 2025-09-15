@@ -18,7 +18,7 @@
                                 <Label Text="{Binding Name}"></Label>
                                 <Label Text="{Binding Servings}"></Label>
                                 <Label Text="{Binding Kcal}"></Label>
-                                <Button Command="{Binding EditMealCommand}"></Button>
+                                <Button Clicked="Button_Clicked" Text="edytuj"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -27,11 +27,11 @@
         </StackLayout>
         <StackLayout>
             <Label Text="Podaj nazwę posiłku"></Label>
-            <Entry Text="{Binding Name}"></Entry>
+            <Entry Text="{Binding NameBind}"></Entry>
             <Label Text="Ilość danego Posiłku"></Label>
-            <Entry Text="{Binding Servings}" Keyboard="Numeric"></Entry>
+            <Entry Text="{Binding ServingsBind}" Keyboard="Numeric"></Entry>
             <Label Text="Podaj ilośc Kalorii (kcal)"></Label>
-            <Entry Text="{Binding Kcal}" Keyboard="Numeric"></Entry>
+            <Entry Text="{Binding KcalBind}" Keyboard="Numeric"></Entry>
             <Button Text="Dodaj Posiłek" Command="{Binding AddMealCommand}"></Button>
         </StackLayout>
     </StackLayout>
