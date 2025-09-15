@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using projektMauiWPierwszyDzienNiezle.Model;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         [ObservableProperty]
         public ObservableCollection<Meal> _MealCollection = new ObservableCollection<Meal>();
         public MealViewModel() {}
-
+        [RelayCommand]
         public void AddMeal(Meal MealItem)
         {
             _MealCollection.Add(MealItem);
