@@ -8,5 +8,15 @@ namespace projektMauiWPierwszyDzienNiezle.Model
 {
     internal class Meal
     {
+        public string Name { get; set; }
+        public int Kcal {  get; set; }
+        public int Servings { get; set; }
+
+        public Meal(string name, int kcal, int servings)
+        {
+            Name = name;
+            Kcal = kcal;
+            Servings = servings;
+        }
     }
 }
