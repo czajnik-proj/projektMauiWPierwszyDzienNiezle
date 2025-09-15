@@ -14,15 +14,25 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
     {
         [ObservableProperty]
         public ObservableCollection<Meal> _MealCollection = new ObservableCollection<Meal>();
+        [ObservableProperty]
+        public string nameBind;
+        [ObservableProperty]
+        public int kcalBind;
+        [ObservableProperty]
+        public int servingsBind;
+        
         public MealViewModel() {}
         [RelayCommand]
-        public void AddMeal(Meal MealItem)
+        public void AddMeal()
         {
+            Meal MealItem = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
             _MealCollection.Add(MealItem);
         }
         [RelayCommand]
         public void DeleteMeal(Meal MealItem)
         {
+            Console.WriteLine(MealCollection);
+            Console.WriteLine(_MealCollection);
             int removeIndex = _MealCollection.IndexOf(MealItem);
             if (removeIndex != -1)
             {
@@ -30,12 +40,13 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
             }
         }
         [RelayCommand]
-        public void EditMeal(Meal MealItem, string name, int kcal, int servings)
+        public void EditMeal(Meal MealItem)
         {
             int editIndex = _MealCollection.IndexOf(MealItem);
             if (editIndex != -1)
             {
-                _MealCollection[editIndex] = new Meal(name, kcal, servings);
+                Meal MealItemEdit = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
+                _MealCollection[editIndex] = MealItem;
             }
         }
 
