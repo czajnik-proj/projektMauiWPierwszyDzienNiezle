@@ -17,7 +17,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
 
         public void AddMeal(Meal MealItem)
         {
-            _MealCollection.Append(MealItem);
+            _MealCollection.Add(MealItem);
         }
         public void DeleteMeal(Meal MealItem)
         {
