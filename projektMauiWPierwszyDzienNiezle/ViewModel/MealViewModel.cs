@@ -20,6 +20,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         {
             _MealCollection.Add(MealItem);
         }
+        [RelayCommand]
         public void DeleteMeal(Meal MealItem)
         {
             int removeIndex = _MealCollection.IndexOf(MealItem);
@@ -28,6 +29,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
                 _MealCollection.RemoveAt(removeIndex);
             }
         }
+        [RelayCommand]
         public void EditMeal(Meal MealItem, string name, int kcal, int servings)
         {
             int editIndex = _MealCollection.IndexOf(MealItem);
