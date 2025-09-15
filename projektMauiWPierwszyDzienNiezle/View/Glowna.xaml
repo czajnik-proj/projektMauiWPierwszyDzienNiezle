@@ -15,7 +15,7 @@
             <Label Text="Podaj nazwę posiłku"></Label>
             <Entry Text="{Binding Name}"></Entry>
             <Label Text="Ilość danego Posiłku"></Label>
-            <Entry Text="{Binding Portions}"></Entry>
+            <Entry Text="{Binding Servings}"></Entry>
             <Label Text="Podaj ilośc Kalorii (kcal)"></Label>
             <Entry Text="{Binding Kcal}"></Entry>
             <Button Text="Dodaj Posiłek"></Button>
