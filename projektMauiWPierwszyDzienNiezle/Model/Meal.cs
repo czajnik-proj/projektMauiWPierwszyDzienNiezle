@@ -10,9 +10,12 @@ namespace projektMauiWPierwszyDzienNiezle.Model
     [ObservableObject]
     public partial class Meal
     {
-        public string Name { get; set; }
-        public int Kcal {  get; set; }
-        public int Servings { get; set; }
+        [ObservableProperty]
+        public string name;
+        [ObservableProperty]
+        public int kcal;
+        [ObservableProperty]
+        public int servings;
 
         public Meal(string name, int kcal, int servings)
         {

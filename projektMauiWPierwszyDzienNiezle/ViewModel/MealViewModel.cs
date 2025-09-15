@@ -12,7 +12,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
     internal partial class MealViewModel : ObservableObject
     {
         [ObservableProperty]
-        public ObservableCollection<Meal> _MealCollection;
+        public ObservableCollection<Meal> _MealCollection = new ObservableCollection<Meal>();
         public MealViewModel() {}
 
         public void AddMeal(Meal MealItem)
