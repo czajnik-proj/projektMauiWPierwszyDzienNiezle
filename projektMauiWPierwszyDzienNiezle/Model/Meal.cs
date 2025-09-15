@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace projektMauiWPierwszyDzienNiezle.Model
 {
-    [ObservableObject]
     public partial class Meal
     {
-        [ObservableProperty]
-        public string name;
-        [ObservableProperty]
-        public int kcal;
-        [ObservableProperty]
-        public int servings;
+        string name;
+        int kcal;
+        int servings;
+
+        public string Name { get => name; set => name = value; }
+        public int Kcal { get => kcal; set => kcal = value; }
+        public int Servings { get => servings; set => servings = value; }
+
 
         public Meal(string name, int kcal, int servings)
         {
