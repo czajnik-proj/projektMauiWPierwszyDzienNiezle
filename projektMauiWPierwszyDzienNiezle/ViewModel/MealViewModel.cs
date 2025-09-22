@@ -28,7 +28,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         }
 
         [RelayCommand]
-        public void DeleteMeall()
+        public void DeleteMeal()
         {
             if (SelectedMeal != null && MealCollection.Contains(SelectedMeal))
             {
@@ -37,7 +37,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         }
 
         [RelayCommand]
-        public async Task StartEditt()
+        public async Task StartEdit()
         {
             if (SelectedMeal == null) return;
 
@@ -48,9 +48,9 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
 
             await Shell.Current.GoToAsync("Edycja");
                 _MealCollection.RemoveAt(removeIndex);
-            }
             updateCaloriesEaten();
         }
+            
 
         [RelayCommand]
         public void SaveEdit()
@@ -74,7 +74,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
                 double servingsTemp = Convert.ToDouble(meal.Servings);
                 totalTemp += kcalTemp * servingsTemp;
             }
-
+            CaloriesEaten = totalTemp;
             ClearForm();
             Shell.Current.GoToAsync("..");
         }
@@ -85,8 +85,6 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
             KcalBind = 0;
             ServingsBind = 0;
             SelectedMeal = null;
-        }
-            CaloriesEaten = totalTemp;
         }
     }
 }
