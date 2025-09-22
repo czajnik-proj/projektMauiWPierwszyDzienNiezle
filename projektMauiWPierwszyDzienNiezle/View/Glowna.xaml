@@ -30,7 +30,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackLayout>
-        <Label Text="Podaj nazwę posiłku" />
+        <Label Text="Podaj nazwę posiłku"  FontSize="Large"/>
         <Entry Text="{Binding NameBind}" />
         <Label Text="Ilość danego Posiłku" />
         <Entry Text="{Binding ServingsBind}" Keyboard="Numeric" />
