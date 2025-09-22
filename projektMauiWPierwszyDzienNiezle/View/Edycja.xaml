@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="projektMauiWPierwszyDzienNiezle.View.Edycja"
+             Title="Edytuj posiłek">
+
+    <StackLayout Padding="20" Spacing="20">
+        <Label Text="Edytuj posiłek" FontSize="20" FontAttributes="Bold" />
+
+        <Entry Placeholder="Nazwa" Text="{Binding NameBind}" />
+        <Entry Placeholder="Porcje" Text="{Binding ServingsBind}" Keyboard="Numeric" />
+        <Entry Placeholder="Kalorie (kcal)" Text="{Binding KcalBind}" Keyboard="Numeric" />
+
+        <Button Text="Zapisz zmiany" Command="{Binding SaveEditCommand}" />
+    </StackLayout>
+</ContentPage>

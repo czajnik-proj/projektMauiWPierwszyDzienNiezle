@@ -1,12 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using projektMauiWPierwszyDzienNiezle.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projektMauiWPierwszyDzienNiezle.ViewModel
 {
@@ -31,24 +26,42 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
             _MealCollection.Add(MealItem);
             updateCaloriesEaten();
         }
+
         [RelayCommand]
-        public void DeleteMeal(Meal MealItem)
+        public void DeleteMeall()
         {
-            int removeIndex = _MealCollection.IndexOf(MealItem);
-            if (removeIndex != -1)
+            if (SelectedMeal != null && MealCollection.Contains(SelectedMeal))
             {
+                MealCollection.Remove(SelectedMeal);
+            }
+        }
+
+        [RelayCommand]
+        public async Task StartEditt()
+        {
+            if (SelectedMeal == null) return;
+
+            // ustaw dane formularza
+            NameBind = SelectedMeal.Name;
+            KcalBind = SelectedMeal.Kcal;
+            ServingsBind = SelectedMeal.Servings;
+
+            await Shell.Current.GoToAsync("Edycja");
                 _MealCollection.RemoveAt(removeIndex);
             }
             updateCaloriesEaten();
         }
+
         [RelayCommand]
-        public void EditMeal(Meal MealItem)
+        public void SaveEdit()
         {
-            int editIndex = _MealCollection.IndexOf(MealItem);
-            if (editIndex != -1)
+            if (SelectedMeal != null)
             {
-                Meal MealItemEdit = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
-                _MealCollection[editIndex] = MealItem;
+                int index = MealCollection.IndexOf(SelectedMeal);
+                if (index != -1)
+                {
+                    MealCollection[index] = new Meal(NameBind, KcalBind, ServingsBind);
+                }
             }
             updateCaloriesEaten();
         }
@@ -62,6 +75,17 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
                 totalTemp += kcalTemp * servingsTemp;
             }
 
+            ClearForm();
+            Shell.Current.GoToAsync("..");
+        }
+
+        private void ClearForm()
+        {
+            NameBind = string.Empty;
+            KcalBind = 0;
+            ServingsBind = 0;
+            SelectedMeal = null;
+        }
             CaloriesEaten = totalTemp;
         }
     }
