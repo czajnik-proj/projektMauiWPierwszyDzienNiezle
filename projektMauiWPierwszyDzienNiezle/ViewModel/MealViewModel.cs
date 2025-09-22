@@ -17,6 +17,8 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         public int servingsBind;
         [ObservableProperty]
         public double caloriesEaten;
+        [ObservableProperty]
+        public Meal selectedMeal;
 
         public MealViewModel() {}
         [RelayCommand]
