@@ -1,5 +1,7 @@
 using projektMauiWPierwszyDzienNiezle.Model;
+
 using projektMauiWPierwszyDzienNiezle.ViewModel;
+
 
 namespace projektMauiWPierwszyDzienNiezle.View;
 
@@ -20,6 +22,7 @@ public partial class Glowna : ContentPage
 		Navigation.PushAsync(new NewPage1(meal));
     }
 
+
     private void Button_Clicked_1(object sender, EventArgs e)
     {
 		Button sender1 = sender as Button;
@@ -27,4 +30,5 @@ public partial class Glowna : ContentPage
 		MealViewModel bin = BindingContext as MealViewModel;
 		bin.DeleteMeal(meal);
     }
+
 }
