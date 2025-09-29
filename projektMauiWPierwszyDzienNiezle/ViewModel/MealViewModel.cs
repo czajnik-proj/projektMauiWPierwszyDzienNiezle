@@ -1,12 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using projektMauiWPierwszyDzienNiezle.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projektMauiWPierwszyDzienNiezle.ViewModel
 {
@@ -20,33 +15,78 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         public int kcalBind;
         [ObservableProperty]
         public int servingsBind;
-        
+        [ObservableProperty]
+        public double caloriesEaten;
+        [ObservableProperty]
+        public Meal selectedMeal;
+
         public MealViewModel() {}
         [RelayCommand]
         public void AddMeal()
         {
             Meal MealItem = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
             _MealCollection.Add(MealItem);
+            updateCaloriesEaten();
         }
+
         [RelayCommand]
-        public void DeleteMeal(Meal MealItem)
+        public void DeleteMeal()
         {
-            int removeIndex = _MealCollection.IndexOf(MealItem);
-            if (removeIndex != -1)
+            if (SelectedMeal != null && MealCollection.Contains(SelectedMeal))
             {
-                _MealCollection.RemoveAt(removeIndex);
-            }
-        }
-        [RelayCommand]
-        public void EditMeal(Meal MealItem)
-        {
-            int editIndex = _MealCollection.IndexOf(MealItem);
-            if (editIndex != -1)
-            {
-                Meal MealItemEdit = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
-                _MealCollection[editIndex] = MealItem;
+                MealCollection.Remove(SelectedMeal);
             }
         }
 
+        [RelayCommand]
+        public async Task StartEdit()
+        {
+            if (SelectedMeal == null) return;
+
+            // ustaw dane formularza
+            NameBind = SelectedMeal.Name;
+            KcalBind = SelectedMeal.Kcal;
+            ServingsBind = SelectedMeal.Servings;
+
+            await Shell.Current.GoToAsync("Edycja");
+                _MealCollection.RemoveAt(removeIndex);
+            updateCaloriesEaten();
+        }
+            
+
+        [RelayCommand]
+        public void SaveEdit()
+        {
+            if (SelectedMeal != null)
+            {
+                int index = MealCollection.IndexOf(SelectedMeal);
+                if (index != -1)
+                {
+                    MealCollection[index] = new Meal(NameBind, KcalBind, ServingsBind);
+                }
+            }
+            updateCaloriesEaten();
+        }
+        public void updateCaloriesEaten()
+        {
+            double totalTemp = 0;
+            foreach (var meal in _MealCollection)
+            {
+                double kcalTemp = Convert.ToDouble(meal.Kcal);
+                double servingsTemp = Convert.ToDouble(meal.Servings);
+                totalTemp += kcalTemp * servingsTemp;
+            }
+            CaloriesEaten = totalTemp;
+            ClearForm();
+            Shell.Current.GoToAsync("..");
+        }
+
+        private void ClearForm()
+        {
+            NameBind = string.Empty;
+            KcalBind = 0;
+            ServingsBind = 0;
+            SelectedMeal = null;
+        }
     }
 }
