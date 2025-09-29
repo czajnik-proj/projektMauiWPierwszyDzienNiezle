@@ -32,7 +32,10 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         [RelayCommand]
         public void DeleteMeal()
         {
+
+
             if (SelectedMeal != null && MealCollection.Contains(SelectedMeal))
+
             {
                 MealCollection.Remove(SelectedMeal);
             }

@@ -43,6 +43,7 @@
                                 <Label Text="{Binding Servings}"></Label>
                                 <Label Text="{Binding Kcal}"></Label>
                                 <Button Clicked="Button_Clicked" Text="edytuj"></Button>
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
