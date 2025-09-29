@@ -5,59 +5,58 @@
              x:Name="MealPage"
              Title="Glowna">
 
-    <StackLayout>
+    <StackLayout Padding="20" BackgroundColor="#f8f9fa">
         <StackLayout>
-            <Label Text="Ilość Zjedzonych Kalorii: "></Label>
-            <Label Text="{Binding CaloriesEaten}"></Label>
-            <Label Text="Lista Posiłków :" />
+            <Label Text="Ilość Zjedzonych Kalorii: " FontSize="Large" TextColor="#2c3e50" FontAttributes="Bold"></Label>
+            <Label Text="{Binding CaloriesEaten}" FontSize="Medium" TextColor="#e74c3c" FontAttributes="Bold"></Label>
+            <Label Text="Lista Posiłków ze wszystkimi informacjami :" FontSize="Medium" TextColor="#34495e" FontAttributes="Bold" Margin="0,10,0,5"/>
         <StackLayout Orientation="Horizontal" Spacing="15">
-            <Label Text="Nazwa Posiłku "></Label>
-            <Label Text="Ilość danego posiłku "></Label>
-                <Label Text="Ilość zjedzonych kalorii "></Label>
+            <Label Text="Nazwa Posiłku " FontSize="Subtitle" TextColor="#2980B9"></Label>
+                <Label Text="Ilość danego posiłku" FontSize="Subtitle" TextColor="#16a085"></Label>
+                <Label Text="Ilość zjedzonych kalorii" FontSize="Subtitle" TextColor="#e67e22"></Label>
             </StackLayout>
         <ListView ItemsSource="{Binding MealCollection}"
                   SelectedItem="{Binding SelectedMeal}"
+                  HasUnevenRows="True"
+                  SeparatorColor="#bdc3c7"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Servings}" />
-                            <Label Text="{Binding Kcal}" />
-                            <Button Text="Edytuj" Command="{Binding StartEditCommand}"/>
-                            <Button Text="Usuń" Command="{Binding DeleteMealCommand}"/>
+                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" HorizontalOptions="Center">
+                            <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="#2c3e50"/>
+                            <Label Text="{Binding Servings}" FontSize="Subtitle" TextColor="#16a085"/>
+                            <Label Text="{Binding Kcal, StringFormat='{0}kcal'}" FontSize="Subtitle" TextColor="#e67e22"/>
+                            <Button Text="Edytuj" Command="{Binding StartEditCommand}" CornerRadius="10" TextColor="White" BackgroundColor="#3498DB"/>
+                            <Button Text="Usuń" Command="{Binding DeleteMealCommand}" CornerRadius="10" TextColor="White" BackgroundColor="#e74c3c"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
             <StackLayout>
-                <Label Text="Lista Posiłków: "></Label>
+                <Label Text="Lista Posiłków: " FontSize="Medium" TextColor="#2980b9"></Label>
             <ListView ItemsSource="{Binding MealCollection}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}"></Label>
-                                <Label Text="{Binding Servings}"></Label>
-                                <Label Text="{Binding Kcal}"></Label>
-                                <Button Command="{Binding EditMealCommand}"></Button>
+                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" HorizontalOptions="Center">
+                                <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="#2c3e50"></Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-        <StackLayout>
-        <Label Text="Podaj nazwę posiłku" />
-        <Entry Text="{Binding NameBind}" />
-        <Label Text="Ilość danego Posiłku" />
-        <Entry Text="{Binding ServingsBind}" Keyboard="Numeric" />
-        <Label Text="Podaj ilość Kalorii (kcal)" />
-        <Entry Text="{Binding KcalBind}" Keyboard="Numeric" />
-                <Button Text="Dodaj Posiłek" Command="{Binding AddMealCommand}" />
-            </StackLayout>
+        <StackLayout Margin="0,15,0,0">
+        <Label Text="Podaj nazwę posiłku" FontSize="Medium" TextColor="#2c3e50" />
+        <Entry Text="{Binding NameBind}" BackgroundColor="White" TextColor="Black"/>
+        <Label Text="Ilość danego Posiłku" FontSize="Medium" TextColor="#2c3e50"/>
+        <Entry Text="{Binding ServingsBind}" Keyboard="Numeric" BackgroundColor="White" TextColor="Black"/>
+        <Label Text="Podaj ilość Kalorii (kcal)" FontSize="Medium" TextColor="#2c3e50"/>
+        <Entry Text="{Binding KcalBind}" Keyboard="Numeric" BackgroundColor="White" TextColor="Black"/>
+            <Button Text="Dodaj Posiłek" Command="{Binding AddMealCommand}" BackgroundColor="#2c3e50" TextColor="White" CornerRadius="12" Margin="0,10,0,0"/>
+        </StackLayout>
     </StackLayout>
     </StackLayout>
 </ContentPage>

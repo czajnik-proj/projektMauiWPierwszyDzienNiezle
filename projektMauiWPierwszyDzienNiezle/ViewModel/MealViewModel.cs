@@ -49,7 +49,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
             ServingsBind = SelectedMeal.Servings;
 
             await Shell.Current.GoToAsync("Edycja");
-                _MealCollection.RemoveAt(removeIndex);
+                //_MealCollection.RemoveAt(removeIndex);
             updateCaloriesEaten();
         }
             
