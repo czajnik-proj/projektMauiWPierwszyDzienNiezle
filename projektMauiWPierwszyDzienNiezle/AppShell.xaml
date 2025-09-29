@@ -11,4 +11,8 @@
         ContentTemplate="{DataTemplate local:Glowna}"
         Route="MainPage" />
 
+	<ShellContent
+        Title="Edit"
+        ContentTemplate="{DataTemplate local:NewPage1}"
+        Route="EditPage" />
 </Shell>
