@@ -8,33 +8,29 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
     internal partial class MealViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<Meal> mealCollection = new();
-
+        public ObservableCollection<Meal> _MealCollection = new ObservableCollection<Meal>();
         [ObservableProperty]
-        private string nameBind;
-
+        public string nameBind;
         [ObservableProperty]
-        private int kcalBind;
-
+        public int kcalBind;
         [ObservableProperty]
-        private int servingsBind;
-
+        public int servingsBind;
         [ObservableProperty]
-        private Meal selectedMeal;
+        public double caloriesEaten;
+        [ObservableProperty]
+        public Meal selectedMeal;
 
-        public MealViewModel() { }
-
+        public MealViewModel() {}
         [RelayCommand]
         public void AddMeal()
         {
-          //  mealCollection = new ObservableCollection<Meal>();
-            var mealItem = new Meal(NameBind, KcalBind, ServingsBind);
-            MealCollection.Add(mealItem);
-            ClearForm();
+            Meal MealItem = new Meal(nameBind, Convert.ToInt32(kcalBind), Convert.ToInt32(servingsBind));
+            _MealCollection.Add(MealItem);
+            updateCaloriesEaten();
         }
 
         [RelayCommand]
-        public void DeleteMeall()
+        public void DeleteMeal()
         {
             if (SelectedMeal != null && MealCollection.Contains(SelectedMeal))
             {
@@ -43,7 +39,7 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
         }
 
         [RelayCommand]
-        public async Task StartEditt()
+        public async Task StartEdit()
         {
             if (SelectedMeal == null) return;
 
@@ -53,7 +49,10 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
             ServingsBind = SelectedMeal.Servings;
 
             await Shell.Current.GoToAsync("Edycja");
+                _MealCollection.RemoveAt(removeIndex);
+            updateCaloriesEaten();
         }
+            
 
         [RelayCommand]
         public void SaveEdit()
@@ -66,7 +65,18 @@ namespace projektMauiWPierwszyDzienNiezle.ViewModel
                     MealCollection[index] = new Meal(NameBind, KcalBind, ServingsBind);
                 }
             }
-
+            updateCaloriesEaten();
+        }
+        public void updateCaloriesEaten()
+        {
+            double totalTemp = 0;
+            foreach (var meal in _MealCollection)
+            {
+                double kcalTemp = Convert.ToDouble(meal.Kcal);
+                double servingsTemp = Convert.ToDouble(meal.Servings);
+                totalTemp += kcalTemp * servingsTemp;
+            }
+            CaloriesEaten = totalTemp;
             ClearForm();
             Shell.Current.GoToAsync("..");
         }
