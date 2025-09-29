@@ -40,8 +40,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                        <StackLayout Orientation="Horizontal" Spacing="20" Padding="5" HorizontalOptions="Center">
-                                <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="#2c3e50"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"></Label>
+                                <Label Text="{Binding Servings}"></Label>
+                                <Label Text="{Binding Kcal}"></Label>
+                                <Button Clicked="Button_Clicked" Text="edytuj"></Button>
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

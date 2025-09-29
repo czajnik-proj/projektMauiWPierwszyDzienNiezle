@@ -66,10 +66,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\Edycja.xaml">
+
+	  <Compile Update="View\NewPage1.xaml.cs">
+	    <DependentUpon>NewPage1.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\Glowna.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Glowna.xaml">
+	  <MauiXaml Update="View\NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
